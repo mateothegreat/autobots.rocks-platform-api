@@ -29,7 +29,7 @@ apply plugin: 'io.spring.dependency-management'
 
 bootJar {
 
-    mainClassName = "autobots-platform-api.src.main.java.autobots.platform.api.AutobotsPlatformAPI"
+    mainClassName = "autobots.platform.api.AutobotsPlatformAPI"
 
 }
 

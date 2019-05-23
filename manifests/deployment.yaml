@@ -57,14 +57,14 @@ spec:
             httpGet:
               path: /monitoring/is_alive
               port: $PORT
-            initialDelaySeconds: 45
+            initialDelaySeconds: 120
             timeoutSeconds: 5
             periodSeconds: 1
           livenessProbe:
             httpGet:
               path: /monitoring/is_alive
               port: $PORT
-            initialDelaySeconds: 45
+            initialDelaySeconds: 120
             timeoutSeconds: 5
             periodSeconds: 5
 #          resources:

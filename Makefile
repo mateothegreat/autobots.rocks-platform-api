@@ -1,8 +1,8 @@
 include .make/Makefile.inc
 
 VERSION			= $(shell git rev-parse HEAD)
-APP				= k8exam-platform-api
-IMAGE			= gcr.io/matthewdavis-devops/$(APP):$(VERSION)
+APP				= autobots-rocks-platform-api
+IMAGE			= registry.gitlab.com/autobots.rocks/$(APP):$(VERSION)
 NS				= default
 PORT			= 10066
 #MYSQL_HOST		=
@@ -25,7 +25,8 @@ kubeme:
 
 jar:
 
-	./gradlew bootJar
+#	./gradlew bootJar
+	gradle bootJar
 
 jar-run: jar
 

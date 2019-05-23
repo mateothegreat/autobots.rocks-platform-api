@@ -1,10 +1,12 @@
 package autobots.platform.api.modules;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -21,5 +23,13 @@ public class Module {
 
     @Column(name = "uuid", updatable = false, nullable = false, unique = true, columnDefinition = "BINARY(16)")
     private UUID uuid;
+
+    @CreationTimestamp
+    private LocalDateTime stampCreated;
+
+    private String name;
+    private String description;
+    private String npmInstallCommand;
+    private String githubUrl;
 
 }

@@ -13,7 +13,7 @@ gradle-build:
   stage: build
   only:
     - master
-  script: "./gradlew build"
+  script: "gradle build"
   artifacts:
     paths:
       - build/libs/*.jar

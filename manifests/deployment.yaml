@@ -20,10 +20,11 @@ spec:
       labels:
         app: $APP
     spec:
+      imagePullSecrets:
+        - name: docker-registry-autobots-rocks-platform-api
       containers:
         - image: $IMAGE
           name: $APP
-          imagePullPolicy: Always
           ports:
             - containerPort: $PORT
               name: http

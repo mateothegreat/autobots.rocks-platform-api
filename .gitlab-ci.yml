@@ -1,0 +1,49 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - package
+  - deploy
+
+gradle-build:
+  image: java:8-jdk
+  stage: build
+  only:
+    - master
+  script: "./gradlew build"
+  artifacts:
+    paths:
+      - build/libs/*.jar
+
+docker-build:
+
+  stage: package
+  only:
+    - master
+
+  script:
+
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA" .
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA"
+
+deploy-master:
+
+  stage: deploy
+
+  image: mateothegreat/docker-alpine-gcloud-kubectl
+
+  only:
+    - master
+
+  script:
+    - kubectl config set-cluster kube-cluster --server="$K8_API_URL" --insecure-skip-tls-verify=true
+    - kubectl config set-credentials gitlab --token="$K8_TOKEN"
+    - kubectl config set-context default-context --cluster=kube-cluster --user=gitlab
+    - kubectl config use-context default-context
+    - apk --update add git
+    - git submodule update --init
+    - make install

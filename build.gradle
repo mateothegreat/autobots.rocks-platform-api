@@ -29,7 +29,7 @@ apply plugin: 'io.spring.dependency-management'
 
 bootJar {
 
-    mainClassName = "streamnvr-platform-api.src.main.java.streamnvr.platform.api.PlatformAPI"
+    mainClassName = "autobots-platform-api.src.main.java.autobots.platform.api.AutobotsPlatformAPI"
 
 }
 

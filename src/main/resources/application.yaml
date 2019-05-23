@@ -22,3 +22,4 @@ spring:
     serialization:
       fail-on-empty-beans: false
       WRITE_DATES_AS_TIMESTAMPS: false
+
